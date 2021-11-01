@@ -72,6 +72,7 @@ public class MyFrame extends JFrame {
         inputText.setFont(font2);
         inputText.setForeground(color3);
         inputText.setLayout(null);
+        inputText.setLineWrap(true);
         inputPanel.add(inputText);
 
         this.add(inputPanel);
@@ -89,13 +90,14 @@ public class MyFrame extends JFrame {
         outputLabel.setFont(font1);
         outputPanel.add(outputLabel);
 
-        JLabel outputText = new JLabel("The Result Will Showed Here");
+        JTextArea outputText = new JTextArea("The Result Will Showed Here");
         outputText.setBounds(textL, textT, textW, textH);
         outputText.setBackground(color2);
         outputText.setOpaque(true);
         outputText.setBorder(border2);
         outputText.setFont(font2);
         outputText.setForeground(color3);
+        outputText.setLineWrap(true);
         outputPanel.add(outputText);
 
         this.add(outputPanel);
