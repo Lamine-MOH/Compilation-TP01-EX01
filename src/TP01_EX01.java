@@ -15,6 +15,8 @@ public class TP01_EX01 {
         code = code.replace("*", "#*#");
         code = code.replace("/", "#/#");
 
+        code = code + "#";
+
         // remove extra # //
         boolean test = true;
         while (test == true) {
@@ -33,14 +35,19 @@ public class TP01_EX01 {
         code = "";
         boolean numberBeforeDoit = true;
 
+        if (codeList[0] == '#') {
+            codeList[0] = ' ';
+        }
+
         for (int i = 0; i < codeList.length; i++) {
             int j = i;
             if ((codeList[i] == '+' || codeList[i] == '-')
                     && (i < 2 || codeList[i - 2] == '+' || codeList[i - 2] == '-' || codeList[i - 2] == '*'
                             || codeList[i - 2] == '/' || codeList[i - 2] == '(')
-                    && (i + 1 < codeList.length && "0123456789".contains("" + codeList[i+2]))) {
+                    && (i + 1 < codeList.length && "0123456789".contains("" + codeList[i + 2]))) {
                 // get the signs //
                 j++;
+
             } else if (numberBeforeDoit == false && !"0123456789".contains("" + codeList[i])) {
                 if (i < codeList.length - 1) {
                     if (codeList[i] != '.') {
