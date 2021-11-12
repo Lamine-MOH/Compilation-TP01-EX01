@@ -48,19 +48,23 @@ public class TP01_EX01 {
                 // get the signs //
                 j++;
 
-            } else if (numberBeforeDoit == false && !"0123456789".contains("" + codeList[i])) {
-                if (i < codeList.length - 1) {
-                    if (codeList[i] != '.') {
-                        numberBeforeDoit = true;
-                    }
-
-                    if (codeList[i] != '#') {
-                        code += "#";
-                    }
-                }
-            } else if (codeList[i] == '.') {
-                numberBeforeDoit = false;
+            } else if (i>0&&codeList[i] == '.' && codeList[i - 1] == '.') {
+                code += "#";
             }
+            // else if (numberBeforeDoit == false && !"0123456789".contains("" +
+            // codeList[i])) {
+            // if (i < codeList.length - 1) {
+            // if (codeList[i] != '.') {
+            // numberBeforeDoit = true;
+            // }
+
+            // if (codeList[i] != '#') {
+            // code += "#";
+            // }
+            // }
+            // } else if (codeList[i] == '.') {
+            // numberBeforeDoit = false;
+            // }
 
             code += codeList[i];
             i = j;
