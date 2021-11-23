@@ -4,7 +4,80 @@ public class TP01_EX01 {
     TP01_EX01() {
     }
 
-    public static String removeExtraSharp(String code){
+    public static String typeOf(String word) {
+        int[][] mat = { { 1, 2, 3, 7, -1 }, { -1, -1, -1, -1, -1 }, { -1, -1, -1, -1, -1 }, { -1, -1, -1, 4, -1 },
+                { -1, -1, -1, 4, 5 }, { -1, -1, -1, 6, -1 }, { -1, -1, -1, 6, -1 }, { -1, -1, -1, 7, 8 },
+                { -1, -1, -1, 9, -1 }, { -1, -1, -1, 9, -1 }
+
+        };
+        String etatFin = "1234679";
+
+        int Ec = 0;
+        char Tc = word.charAt(0);
+
+        int index = 0;
+
+        while ((Ec != -1) && (Tc != '#')) {
+            int n = 0;
+            if ("()".contains(Tc + "")) {
+                n = 0;
+            } else if ("*/".contains(Tc + "")) {
+                n = 1;
+            } else if ("+-".contains(Tc + "")) {
+                n = 2;
+            } else if ("0123456789".contains(Tc + "")) {
+                n = 3;
+            } else if (".".contains(Tc + "")) {
+                n = 4;
+            } else {
+                Ec = -1;
+                break;
+            }
+
+            Ec = mat[Ec][n];
+
+            index++;
+            Tc = word.charAt(index);
+        }
+
+        if (Ec == -1) {
+            return "incorrect";
+        } else if (!etatFin.contains(Ec + "")) {
+            return "incorrect";
+        }
+        if (Ec == 1) {
+            return "par";
+        }
+        if (Ec == 2) {
+            return "op";
+        }
+        if (Ec == 3) {
+            return "op";
+        }
+        if (Ec == 4) {
+            return "entie sign";
+        }
+        if (Ec == 6) {
+            return "reel sign";
+        }
+        if (Ec == 7) {
+            return "entier";
+        }
+        if (Ec == 9) {
+            return "reel";
+        }
+
+        return "";
+    }
+
+    public static void main(String[] args) {
+        System.out.println();
+        System.out.println(typeOf("#"));
+        System.out.println();
+
+    }
+
+    public static String removeExtraSharp(String code) {
         boolean test = true;
         while (test == true) {
             test = false;
@@ -72,7 +145,6 @@ public class TP01_EX01 {
         // remove extra # //
         code = removeExtraSharp(code);
         // //
-
 
         return code;
     }

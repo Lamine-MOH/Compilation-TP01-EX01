@@ -15,12 +15,36 @@ public class Control {
     private Button submitBtn;
 
     @FXML
+    private TextArea typesOutput;
+
+    @FXML
     void submitClick(ActionEvent event) {
         String text = inputText.getText();
 
         text = TP01_EX01.splitToWords(text);
 
         outputText.setText(text);
+
+        String typesText = "";
+        String word = "";
+
+        int index = 0;
+
+        while (index < text.length()) {
+            word += text.charAt(index);
+
+            if (text.charAt(index) == '#') {
+                String type = TP01_EX01.typeOf(word);
+
+                typesText += " " + word + "\t\t\t  => " + type + "\n";
+
+                word = "";
+            }
+
+            index++;
+        }
+
+        typesOutput.setText(typesText);
     }
 
 }
