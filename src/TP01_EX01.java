@@ -41,30 +41,46 @@ public class TP01_EX01 {
         }
 
         if (Ec == -1) {
-            return "incorrect";
+            return "Mot incorrect";
         } else if (!etatFin.contains(Ec + "")) {
-            return "incorrect";
+            return "Mot incorrect";
         }
         if (Ec == 1) {
-            return "par";
+            return "Parenthese";
         }
         if (Ec == 2) {
-            return "op";
+            return "Operation";
         }
         if (Ec == 3) {
-            return "op";
+            return "Operation";
         }
         if (Ec == 4) {
-            return "entie sign";
+            if (word.length() - 1 <= 7) {
+                return "Entier signé";
+            } else {
+                return "Entier signé (Maximum de 7 caracteres)";
+            }
         }
         if (Ec == 6) {
-            return "reel sign";
+            if (word.length() - 1 <= 9) {
+                return "Reel signé";
+            } else {
+                return "Reel signé (Maximum de 9 caracteres)";
+            }
         }
         if (Ec == 7) {
-            return "entier";
+            if (word.length() - 1 <= 7) {
+                return "Entier";
+            } else {
+                return "Entier (Maximum de 7 caracteres)";
+            }
         }
         if (Ec == 9) {
-            return "reel";
+            if (word.length() - 1 <= 9) {
+                return "Reel";
+            } else {
+                return "Reel (Maximum de 9 caracteres)";
+            }
         }
 
         return "";
@@ -92,7 +108,7 @@ public class TP01_EX01 {
         return code;
     }
 
-    public static String splitToWords(String code) {
+    public static String splitToWords_01(String code) {
 
         code = code.replace(" ", "#");
         code = code.replace("\n", "#");
@@ -149,4 +165,60 @@ public class TP01_EX01 {
         return code;
     }
 
+    public static String splitToWords_02(String code) {
+
+        String str = "-/()";
+        String sign = "+-";
+        String dot = ".";
+        String space = " \n";
+        String numbers = "0123456789";
+        String op = "+-*/(";
+
+        String result = "";
+
+        for (int i = 0; i < code.length(); i++) {
+            if (str.contains(code.charAt(i) + "")) {
+                if (result.length() > 0 &&result.charAt(result.length() - 1) != '#') {
+                    result += "#";
+                }
+
+                result += code.charAt(i);
+
+                result += "#";
+            } else if (sign.contains(code.charAt(i) + "")) {
+                if (result.length() > 0 && result.charAt(result.length() - 1) != '#') {
+                    result += "#";
+                }
+
+                result += code.charAt(i);
+
+                if (!(i == 0 || op.contains(code.charAt(i - 1) + ""))
+                        || !(i == code.length() - 1 || numbers.contains(code.charAt(i + 1) + ""))) {
+                    result += "#";
+                }
+            } else if (dot.contains(code.charAt(i) + "")) {
+                if (i > 0 && !numbers.contains(code.charAt(i - 1) + "") && result.charAt(result.length() - 1) != '#') {
+                    result += "#";
+                }
+
+                result += code.charAt(i);
+
+                if (i == code.length() - 1 || !numbers.contains(code.charAt(i + 1) + "")) {
+                    result += "#";
+                }
+            } else if (space.contains(code.charAt(i) + "")) {
+                if (i > 0 && result.charAt(result.length() - 1) != '#') {
+                    result += "#";
+                }
+            } else {
+                result += code.charAt(i);
+            }
+        }
+
+        if (result.charAt(result.length() - 1) != '#') {
+            result += "#";
+        }
+
+        return result;
+    }
 }

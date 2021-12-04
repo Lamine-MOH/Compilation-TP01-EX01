@@ -18,10 +18,13 @@ public class Control {
     private TextArea typesOutput;
 
     @FXML
+    private Button clearBtn;
+
+    @FXML
     void submitClick(ActionEvent event) {
         String text = inputText.getText();
 
-        text = TP01_EX01.splitToWords(text);
+        text = TP01_EX01.splitToWords_02(text);
 
         outputText.setText(text);
 
@@ -47,4 +50,13 @@ public class Control {
         typesOutput.setText(typesText);
     }
 
+
+    
+
+   
+
+    @FXML
+    void clear(ActionEvent event) {
+        inputText.setText("");
+    }
 }

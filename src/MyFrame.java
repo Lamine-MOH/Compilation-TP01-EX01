@@ -114,7 +114,7 @@ public class MyFrame extends JFrame {
         btn.setFocusable(false);
 
         btn.addActionListener(e -> {
-            outputText.setText(TP01_EX01.splitToWords(inputText.getText()));
+            outputText.setText(TP01_EX01.splitToWords_01(inputText.getText()));
         });
 
         this.add(btn);
